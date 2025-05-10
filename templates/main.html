@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>보호자 대시보드</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+<body>
+    <div class="header">
+        <h1>보호자 대시보드</h1>
+    </div>
+
+    <div class="content">
+        <div class="video-container">
+            <img src="{{ url_for('video_feed') }}" id="video-stream">
+            <div class="message-form">
+                <input type="text" id="message-input" placeholder="메시지를 입력하세요">
+                <button onclick="sendMessage()">전송</button>
+            </div>
+        </div>
+
+        <div class="map-container">
+            <div id="map"></div>
+        </div>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+# Python 가상환경
+venv/
+env/
+.venv/
+ENV/
+
+# Python 캐시 파일
+__pycache__/
+*.py[cod]
+*$py.class
+
+# VSCode 설정 (선택 사항)
+.vscode/
+
+# Jupyter Notebook 체크포인트 (사용하는 경우)
+.ipynb_checkpoints/
+
+# OS별 임시 파일
+.DS_Store
+Thumbs.db
+
+# pip 설치 기록 (선택 사항)
+pip-log.txt
+
+# 로그 파일
+*.log
+
+# 기타 개인 설정 파일
+*.swp
