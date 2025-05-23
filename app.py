@@ -117,8 +117,8 @@ def inference_img():
                     id = int(box.id[0])
 
                     if id not in track_dict:
-                        track_dict[id] = curr_time
-                    elif curr_time-track_dict[id] > 3.0 and curr_time-last_TTS_time > 3.0:
+                        track_dict[(id,int(box.cls[0]))] = curr_time
+                    elif curr_time-track_dict[(id,int(box.cls[0]))] > 3.0 and curr_time-last_TTS_time > 3.0:
                         
                         if id not in call_ids:
                             call_ids.append(id)    
