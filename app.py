@@ -119,10 +119,11 @@ def inference_img():
 
                     if (id,label) not in track_dict:
                         track_dict[(id,label)] = curr_time
+
                     elif curr_time-track_dict[(id,label)] > 3.0 and curr_time-last_TTS_time > 3.0:
                         
-                        if id not in call_ids:
-                            call_ids.append(id)    
+                        if (id,label) not in call_ids:
+                            call_ids.append((id,label))    
                             last_TTS_time = curr_time
 
                             alert_info = {
@@ -133,7 +134,6 @@ def inference_img():
 
             frame = img_queue.get()
             inference_img_queue.put(frame)
-            time.sleep(0.01)
 
 
             
