@@ -115,10 +115,11 @@ def inference_img():
                 if ((x2-x1)*(y2-y1) / imgsz**2 > 0.2) and imgsz*0.25<center_x<imgsz*0.75 and imgsz*0.25<center_y<imgsz*0.75:
                     
                     id = int(box.id[0])
+                    label = model.names[int(box.cls[0])]
 
-                    if id not in track_dict:
-                        track_dict[(id,int(box.cls[0]))] = curr_time
-                    elif curr_time-track_dict[(id,int(box.cls[0]))] > 3.0 and curr_time-last_TTS_time > 3.0:
+                    if (id,label) not in track_dict:
+                        track_dict[(id,label)] = curr_time
+                    elif curr_time-track_dict[(id,label)] > 3.0 and curr_time-last_TTS_time > 3.0:
                         
                         if id not in call_ids:
                             call_ids.append(id)    
