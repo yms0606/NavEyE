@@ -2,19 +2,22 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>보호자 대시보드</title>
+    <title>NavEyE 보호자 대시보드</title>
     <link rel="stylesheet" href="/static/style.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 </head>
 <body>
     <div class="header">
-        <h1>보호자 대시보드</h1>
+        <h1>👁️ NavEyE 보호자 대시보드</h1>
     </div>
 
     <div class="content">
         <div class="video-container">
-            <img src="{{ url_for('video_feed') }}" id="video-stream">
+            <div class="video-wrapper">
+                <img src="{{ url_for('video_feed') }}" id="video-stream">
+                <div id="placeholder-text">📡 영상 스트리밍 접속 대기 중...</div>
+            </div>
             <div class="message-form">
                 <input type="text" id="message-input" placeholder="메시지를 입력하세요">
                 <button onclick="sendMessage()">전송</button>
@@ -22,10 +25,35 @@
         </div>
 
         <div class="map-container">
+            <h2>실시간 위치</h2>
             <div id="map"></div>
         </div>
     </div>
 
+    <script>
+        const video = document.getElementById("video-stream");
+        const placeholder = document.getElementById("placeholder-text");
+
+        function hidePlaceholder() {
+            placeholder.style.display = "none";
+            video.style.display = "block";
+        }
+
+        function showPlaceholder() {
+            placeholder.style.display = "flex";
+            video.style.display = "none";
+        }
+
+        video.onload = hidePlaceholder;
+        video.onerror = showPlaceholder;
+
+        // Fallback: 일정 시간 후에도 영상이 로드되지 않으면 대기 메시지 유지
+        setTimeout(() => {
+            if (!video.complete || video.naturalHeight === 0) {
+                showPlaceholder();
+            }
+        }, 2000);
+    </script>
     <script src="/static/script.js"></script>
 </body>
 </html>

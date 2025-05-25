@@ -67,10 +67,9 @@ def upload_frame():
         id = int(box.id[0]) if box.id is not None else -1
 
         cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0))
-        cv2.putText(frame, f"{label} ID:{id} {confidence:.2f}", (x1, y1-10),
+        cv2.putText(frame, f"{label} {confidence:.2f}", (x1, y1-10),
                     cv2.FONT_HERSHEY_COMPLEX, 0.5, (0, 255, 0))
 
-        print(f"label {label}, {x1} {y1} {x2} {y2}")
     #inference_img_queue.put(frame)
     
     #with lock:
